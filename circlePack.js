@@ -30,8 +30,8 @@ function circlePack(){
                 .attr("width", width)
                 .attr("height", height);
             var g = svg.append("g")
-                .attr("width", drawWidth)
-                .attr("height", drawHeight);
+                .attr("width", _drawWidth)
+                .attr("height", _drawHeight);
             var root = d3.hierarchy(data)
                 .sum(function(d){return d.size;})
                 .sort(function(a,b){return b.value - a.value;})
