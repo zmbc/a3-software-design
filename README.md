@@ -22,7 +22,14 @@ d3.select("#your-div-here").data([yourDataVariable]).call(cPack);
 again in order to update the chart. Replace `cPack`, `func1`, and `param1` with the appropriate variables and API calls listed below.
 
 ## What type of things can I customize?
-Check the API list below for more details.
+Check the [API list](#api-list) below for a complete list of functions that can customize your chart.
+### What about CSS?
+You can style the chart by using the following classes:
+| CSS Class | Description |
+|------------------|----------------------------------------------------------------------|
+| circle-pack-node | A node representing a group of data points, 1+ nodes below this node |
+| circle-pack-leaf | A node representing a single data point, no groups below this node |
+|  |  |
 
 # API List
 All of the following functions should be called on the chart instance, that is the `cPack` variable in the above example. You can simply chain the following API calls after that.
@@ -46,8 +53,8 @@ The height of the full vis (including margins)
 ### `circlePadding`
 The padding between each of the circles within the vis
 ### `minColor`
-The color to begin the color scale for the circles that enclose other circles (non-leaf nodes in the hierarchy)
+The color to begin the color scale for the circles that enclose other circles (non-leaf nodes in the hierarchy). **Must be in hexcode format**
 ### `maxColor`
-The color to end the color scale for the circles that enclose other circles (non-leaf nodes in the hierarchy)
+The color to end the color scale for the circles that enclose other circles (non-leaf nodes in the hierarchy) **Must be in hexcode format**
 ### `leafColor`
-The color to fill the leaf nodes with (the circles that are the data points themselves, not the groups)
+The color to fill the leaf nodes with (the circles that are the data points themselves, not the groups) **Must be in hexcode format**

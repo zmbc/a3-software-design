@@ -24,6 +24,7 @@ function circlePack(){
         .padding(circlePadding);
 
     var vis = function(selection){
+        _reset();
         selection.each(function(data, i){
             var svg = selection
                 .append("svg")
@@ -41,6 +42,7 @@ function circlePack(){
             var circle = g.selectAll("circle").data(allNodes);
             circle.enter()
                 .append("circle")
+                .attr("class", function(d){ return d.children ? "circle-pack-node" : "circle-pack-leaf"; })
                 .style("fill", function(d){ return d.children ? _colorScale(d.depth) : leafColor; })
                 .attr("r", function(d){ return d.r; })
                 .attr("cx", function(d){ return d.x; })
@@ -54,7 +56,7 @@ function circlePack(){
             console.warn("No arguments provided to attr method");
             return this;
         }
-        if(attr == undefined || attr == null || attr.length == 0){
+        if(attr == undefined || attr == null || attr.length == 0 || this.hasOwnProperty(attr)){
             console.error("Improper attr: " + attr +" provided to circlePack.attr - Please use a string representing the attribute you'd like to modify");
             return this;
         }
@@ -65,6 +67,20 @@ function circlePack(){
         if(arguments.length < 2) { return this[attr]; }
         this[attr] = val;
         return this;
+    }
+
+    // Reset any calculated variables, such as functions or values
+    function _reset(){
+        _drawWidth = width - margin.left - margin.right;
+        _drawHeight = height - margin.top - margin.bottom;
+        _colorScale = d3.scaleLinear()
+            .domain([-1, 10])
+            .range([minColor, maxColor])
+            .interpolate(d3.interpolateRgb);
+
+        _pack = d3.pack()
+            .size([_drawWidth, _drawWidth])
+            .padding(circlePadding);
     }
 
     return vis;
