@@ -1,5 +1,5 @@
 function circlePack(){
-      var margin = {
+    var margin = {
         top: 10,
         right: 10,
         bottom: 10,
@@ -7,20 +7,20 @@ function circlePack(){
     };
     var width = 800;
     var height = 800;
-    var drawWidth = width - margin.left - margin.right;
-    var drawHeight = height - margin.top - margin.bottom;
+    var _drawWidth = width - margin.left - margin.right;
+    var _drawHeight = height - margin.top - margin.bottom;
     var circlePadding = 2;
     var minColor = "#333";
     var maxColor = "#F0F";
     var leafColor = "#0FF";
 
-    var colorScale = d3.scaleLinear()
+    var _colorScale = d3.scaleLinear()
         .domain([-1, 10])
         .range([minColor, maxColor])
         .interpolate(d3.interpolateRgb);
 
-    var pack = d3.pack()
-        .size([drawWidth, drawWidth])
+    var _pack = d3.pack()
+        .size([_drawWidth, _drawWidth])
         .padding(circlePadding);
 
     var vis = function(selection){
@@ -36,12 +36,12 @@ function circlePack(){
                 .sum(function(d){return d.size;})
                 .sort(function(a,b){return b.value - a.value;})
             var focus = root;
-            var allNodes = pack(root).descendants();
+            var allNodes = _pack(root).descendants();
 
             var circle = g.selectAll("circle").data(allNodes);
             circle.enter()
                 .append("circle")
-                .style("fill", function(d){ return d.children ? colorScale(d.depth) : leafColor; })
+                .style("fill", function(d){ return d.children ? _colorScale(d.depth) : leafColor; })
                 .attr("r", function(d){ return d.r; })
                 .attr("cx", function(d){ return d.x; })
                 .attr("cy", function(d){ return d.y; })
@@ -52,6 +52,14 @@ function circlePack(){
     vis.attr = function(attr, val){
         if(!arguments.length) {
             console.warn("No arguments provided to attr method");
+            return this;
+        }
+        if(attr == undefined || attr == null || attr.length == 0){
+            console.error("Improper attr: " + attr +" provided to circlePack.attr - Please use a string representing the attribute you'd like to modify");
+            return this;
+        }
+        if(attr[0] === "_"){
+            console.warn("Please do not modify private attributes");
             return this;
         }
         if(arguments.length < 2) { return this[attr]; }
