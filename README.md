@@ -24,12 +24,12 @@ Check the API list below for more details.
 All of the following functions should be called on the chart instance, that is the `cPack` variable in the above example. You can simply chain the following API calls after that.
 
 ### `.attr(attrName)`
-Gets the value of a given attribute, such as width or height. For a full list please see the [list of attributes that can be modified](#Attr list).
+Gets the value of a given attribute, such as width or height. For a full list please see the [list of attributes that can be modified](#attr-list).
 * attrName: A string representing the attribute value you'd like to get
 * **returns** the value of the attribute
 
 ### `.attr(attrName, val)`
-Sets the value of a given attribute with the given value, such as width or height. For a full list please see the [list of attributes that can be modified](#Attr list).
+Sets the value of a given attribute with the given value, such as width or height. For a full list please see the [list of attributes that can be modified](#attr-list).
 * attrName: A string representing the attribute value you'd like to get
 * val: The value to replace the attribute with
 * **returns** the chart object (for chaining)
