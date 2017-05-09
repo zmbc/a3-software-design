@@ -1,4 +1,5 @@
 function circlePack(){
+    // nest all data in an obj
     var margin = {
         top: 10,
         right: 10,
@@ -13,6 +14,8 @@ function circlePack(){
     var minColor = "#333";
     var maxColor = "#F0F";
     var leafColor = "#0FF";
+    var strokeWidth = 2;
+    var strokeColor = "#000";
 
     var _colorScale = d3.scaleLinear()
         .domain([-1, 10])
@@ -24,8 +27,11 @@ function circlePack(){
         .padding(circlePadding);
 
     var vis = function(selection){
+        this.width = width;
         _reset();
         selection.each(function(data, i){
+            console.log("CALLED VIS")
+            console.log(width);
             var svg = selection
                 .append("svg")
                 .attr("width", width)
@@ -43,6 +49,15 @@ function circlePack(){
             circle.enter()
                 .append("circle")
                 .attr("class", function(d){ return d.children ? "circle-pack-node" : "circle-pack-leaf"; })
+                .style("stroke", strokeWidth)
+                .on("mouseover", function(d){
+                    console.log("mouseover");
+                    d3.select(this).style("stroke", strokeColor);
+                })
+                .on("mouseout", function(d){
+                    console.log("mouseout");
+                    d3.select(this).style("stroke", "");
+                })
                 .style("fill", function(d){ return d.children ? _colorScale(d.depth) : leafColor; })
                 .attr("r", function(d){ return d.r; })
                 .attr("cx", function(d){ return d.x; })
@@ -57,7 +72,7 @@ function circlePack(){
             return this;
         }
         if(attr == undefined || attr == null || attr.length == 0 || this.hasOwnProperty(attr)){
-            console.error("Improper attr: " + attr +" provided to circlePack.attr - Please use a string representing the attribute you'd like to modify");
+            console.error("Improper attr: \"" + attr +"\" provided to circlePack.attr - Please use a string representing the attribute you'd like to modify");
             return this;
         }
         if(attr[0] === "_"){
@@ -66,11 +81,17 @@ function circlePack(){
         }
         if(arguments.length < 2) { return this[attr]; }
         this[attr] = val;
+        console.log("CALLED ATTR")
+        console.log(this);
+        console.log(this[attr]);
+        console.log(width);
         return this;
     }
 
     // Reset any calculated variables, such as functions or values
-    function _reset(){
+    function _reset() {
+        console.log("called reset");
+        console.log(width);
         _drawWidth = width - margin.left - margin.right;
         _drawHeight = height - margin.top - margin.bottom;
         _colorScale = d3.scaleLinear()
