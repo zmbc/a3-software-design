@@ -47,15 +47,24 @@ Sets the value of a given attribute with the given value, such as width or heigh
 * **returns** the chart object (for chaining)
 
 # Attr list
+## Chart Sizing related
 ### `width`
-The width of the full vis (including margins)
+The width of the full vis (including margins) (`default 800`)
 ### `height`
-The height of the full vis (including margins)
+The height of the full vis (including margins) (`default 800`)
 ### `circlePadding`
-The padding between each of the circles within the vis
+The padding between each of the circles within the vis (`default 2`)
+### `margin`
+The margin between the visualization itself and the wrapper div. Access individual sides using `margin.left`, `margin.top`, `margin.bottom`, and `margin.right` (`default: 10, 10, 10, 10`)
+## Color related
 ### `minColor`
-The color to begin the color scale for the circles that enclose other circles (non-leaf nodes in the hierarchy). **Must be in hexcode format**
+The color to begin the color scale for the circles that enclose other circles (non-leaf nodes in the hierarchy). **Must be in hexcode format** (`default: #333`)
 ### `maxColor`
-The color to end the color scale for the circles that enclose other circles (non-leaf nodes in the hierarchy) **Must be in hexcode format**
+The color to end the color scale for the circles that enclose other circles (non-leaf nodes in the hierarchy) **Must be in hexcode format** (`default: #F0F`)
 ### `leafColor`
-The color to fill the leaf nodes with (the circles that are the data points themselves, not the groups) **Must be in hexcode format**
+The color to fill the leaf nodes with (the circles that are the data points themselves, not the groups) **Must be in hexcode format** (`default: #0FF`)
+## Circle related
+### `strokeWidth`
+The width of the outline when hovering over a circle (`default: 2`)
+### `strokeColor`
+The color of the outline when hovering over a circle (`default #000`)
