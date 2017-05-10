@@ -13,7 +13,8 @@ function circlePack(){
         maxColor: "#F0F",
         leafColor: "#0FF",
         strokeWidth: 2,
-        strokeColor: "#000"
+        strokeColor: "#000",
+        animationDuration: 500
     }
     var _drawWidth = attrs.width - attrs.margin.left - attrs.margin.right;
     var _drawHeight = attrs.height - attrs.margin.top - attrs.margin.bottom;
@@ -58,9 +59,12 @@ function circlePack(){
                     d3.select(this).style("stroke", "");
                 })
                 .style("fill", function(d){ return d.children ? _colorScale(d.depth) : attrs.leafColor; })
-                .attr("r", function(d){ return d.r; })
                 .attr("cx", function(d){ return d.x; })
                 .attr("cy", function(d){ return d.y; })
+                .attr("r", 0)
+                .transition()
+                .duration(attrs.animationDuration)
+                .attr("r", function(d){ return d.r; })
                 ;
         });
     }

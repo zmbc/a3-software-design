@@ -140,3 +140,6 @@ The color to fill the leaf nodes with (the circles that are the data points them
 The width of the outline when hovering over a circle (`default: 2`)
 ### `strokeColor`
 The color of the outline when hovering over a circle (`default #000`)
+## Animation related
+### animationDuration
+The base time for every animation, in milliseconds (`default: 500`)
