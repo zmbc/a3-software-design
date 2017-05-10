@@ -23,7 +23,7 @@ function circlePack(){
     var childAcc = "children";
 
     var _colorScale = d3.scaleLinear()
-        .domain([-1, 10])
+        .domain([0, 10])
         .range([attrs.minColor, attrs.maxColor])
         .interpolate(d3.interpolateRgb);
 
