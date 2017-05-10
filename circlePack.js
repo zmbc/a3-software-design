@@ -74,11 +74,12 @@ function circlePack(){
                 //.attr("cx", function(d){ return d.x; })
                 //.attr("cy", function(d){ return d.y; })
                 .attr("r", 0)
+                .append("title")
+                .text(function(d) { return d.data[nameAcc] + (d.data[sizeAcc] ? ": " + d.data[sizeAcc] : ""); })
                 .transition()
                 .duration(attrs.animationDuration)
                 .attr("r", function(d){ return d.r; })
                 ;
-
             var text = g.selectAll("text").data(allNodes);
             text.enter()
                 .append("text")
@@ -109,11 +110,12 @@ function circlePack(){
                         return function(t) { zoomTo(i(t)); };
                     });
 
-                transition.selectAll("text")
-                .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
-                    .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
-                    .on("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
-                    .on("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
+                g.selectAll("text")
+                    .transition(transition)
+                    .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
+                        .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
+                        .on("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
+                        .on("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
             }
 
             function zoomTo(v) {

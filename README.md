@@ -16,9 +16,9 @@ This lets you construct a simple circle pack within a given div. `yourDataVariab
 
 ## What kind of data should I provide?
 You can use whatever data you'd like to, but it has to have some requirements:
-1. Each object must contain the property `name`, which is a string representing the name of the group or leaf. If not you **must** call `.nameAccessor` (See the [api listing below](#nameaccessor) for more information)
-2. Each leaf node must contain the property `size`, which is a number representing the size. If not you **must** call `.sizeAccessor` (See the [api listing below](#sizeaccessor) for more information)
-3. Each group object must contain the property `children`, with an array of objects inside of it. If not you **must** call `.childAccessor` (See the [api listing below](#childaccessor) for more information)
+1. Each object must contain the property `name`, which is a string representing the name of the group or leaf. If not you **must** call `.nameAccessor` (See the [api listing below](#nameaccessoraccessor) for more information)
+2. Each leaf node must contain the property `size`, which is a number representing the size. If not you **must** call `.sizeAccessor` (See the [api listing below](#sizeaccessoraccessor) for more information)
+3. Each group object must contain the property `children`, with an array of objects inside of it. If not you **must** call `.childAccessor` (See the [api listing below](#childaccessoraccessor) for more information)
 
 An example data object is shown below:
 ```
@@ -55,6 +55,8 @@ again in order to update the chart. Replace `cPack`, `func1`, and `param1` with 
 ## What type of things can I customize?
 Check the [API list](#api-list) below for a complete list of functions that can customize your chart.
 ### What about CSS?
+CirclePack comes with a pre-made css file that includes some simple css rules that help you get a basic chart styled. If you'd like to overwrite these rules, simply include `circlePack.css` before your main css file, or don't include it at all! The library works with just the `.js` file.
+
 You can style the chart by using the following classes:
 
 | CSS Class | Description |
@@ -141,5 +143,5 @@ The width of the outline when hovering over a circle (`default: 2`)
 ### `strokeColor`
 The color of the outline when hovering over a circle (`default #000`)
 ## Animation related
-### animationDuration
+### `animationDuration`
 The base time for every animation, in milliseconds (`default: 500`)

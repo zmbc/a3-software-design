@@ -1,0 +1,9 @@
+.circle-pack-node {
+    cursor: pointer;
+}
+.circle-pack-leaf {
+    cursor: default;
+}
+.circle-pack-text {
+    font-size: 14pt;
+}
