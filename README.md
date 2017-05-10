@@ -25,6 +25,7 @@ again in order to update the chart. Replace `cPack`, `func1`, and `param1` with 
 Check the [API list](#api-list) below for a complete list of functions that can customize your chart.
 ### What about CSS?
 You can style the chart by using the following classes:
+
 | CSS Class | Description |
 | --- | --- |
 | circle-pack-node | A node representing a group of data points, 1+ nodes below this node |
