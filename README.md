@@ -15,7 +15,7 @@ d3.select("#your-div-here")
 This lets you construct a simple circle pack within a given div. `yourDataVariable` should be a javascript object that contains the nested data you'd like to visualize.
 
 ### Can I update the chart after I make it?
-You sure can! Just call `cPack.func1(param1)` then repeat your 
+You sure can! Just call `cPack.func1(param1)` then repeat your
 ```
 d3.select("#your-div-here").data([yourDataVariable]).call(cPack);
 ```
@@ -26,7 +26,7 @@ Check the [API list](#api-list) below for a complete list of functions that can 
 ### What about CSS?
 You can style the chart by using the following classes:
 | CSS Class | Description |
-|------------------|----------------------------------------------------------------------|
+| --- | --- |
 | circle-pack-node | A node representing a group of data points, 1+ nodes below this node |
 | circle-pack-leaf | A node representing a single data point, no groups below this node |
 |  |  |
