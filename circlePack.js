@@ -46,6 +46,7 @@ function circlePack(){
                 .sort(function(a,b){return b.value - a.value;})
             var focus = root;
             var allNodes = _pack(root).descendants();
+            console.log(allNodes);
 
             var circle = g.selectAll("circle").data(allNodes);
             circle.enter()
@@ -66,6 +67,14 @@ function circlePack(){
                 .duration(attrs.animationDuration)
                 .attr("r", function(d){ return d.r; })
                 ;
+            var text = g.selectAll("text").data(allNodes);
+            text.enter()
+                .append("text")
+                .attr("class", "circle-pack-text")
+                .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
+                .text(function(d) { return d.data[nameAcc]; })
+                .attr("x", function(d) { return d.x; })
+                .attr("y", function(d) { return d.y; })
         });
     }
 

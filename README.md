@@ -61,7 +61,7 @@ You can style the chart by using the following classes:
 | --- | --- |
 | circle-pack-node | A node representing a group of data points, 1+ nodes below this node |
 | circle-pack-leaf | A node representing a single data point, no groups below this node |
-|  |  |
+| circle-pack-text | The text that goes on top of a node or group of nodes |
 
 # API List
 All of the following functions should be called on the chart instance, that is the `cPack` variable in the above example. You can simply chain the following API calls after that.
