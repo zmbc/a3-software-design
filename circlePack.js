@@ -47,7 +47,7 @@ function circlePack(){
             circle.enter()
                 .append("circle")
                 .attr("class", function(d){ return d.children ? "circle-pack-node" : "circle-pack-leaf"; })
-                .style("stroke", attrs.strokeWidth)
+                .style("stroke-width", attrs.strokeWidth)
                 .on("mouseover", function(d){
                     d3.select(this).style("stroke", attrs.strokeColor);
                 })

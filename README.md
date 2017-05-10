@@ -47,6 +47,11 @@ Sets the value of a given attribute with the given value, such as width or heigh
 * **returns** the chart object (for chaining)
 
 # Attr list
+For all the following, you can modify them by calling:
+```
+circlePack().attr("name", value).attr("otherName", value);
+```
+chaining as many as you need to.
 ## Chart Sizing related
 ### `width`
 The width of the full vis (including margins) (`default 800`)
