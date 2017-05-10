@@ -17,6 +17,9 @@ function circlePack(){
     }
     var _drawWidth = attrs.width - attrs.margin.left - attrs.margin.right;
     var _drawHeight = attrs.height - attrs.margin.top - attrs.margin.bottom;
+    var nameAcc = "name";
+    var sizeAcc = "size";
+    var childAcc = "children";
 
     var _colorScale = d3.scaleLinear()
         .domain([-1, 10])
@@ -37,8 +40,8 @@ function circlePack(){
             var g = svg.append("g")
                 .attr("width", _drawWidth)
                 .attr("height", _drawHeight);
-            var root = d3.hierarchy(data)
-                .sum(function(d){return d.size;})
+            var root = d3.hierarchy(data, function(d) { return d[childAcc]; })
+                .sum(function(d){return d[sizeAcc]; })
                 .sort(function(a,b){return b.value - a.value;})
             var focus = root;
             var allNodes = _pack(root).descendants();
@@ -60,6 +63,33 @@ function circlePack(){
                 .attr("cy", function(d){ return d.y; })
                 ;
         });
+    }
+
+    vis.nameAccessor = function(accessor) {
+        if(!arguments.length) {
+            console.warn("No arguments provided to nameAccessor method");
+            return this;
+        }
+        nameAcc = accessor;
+        return this;
+    }
+
+    vis.sizeAccessor = function(accessor) {
+        if(!arguments.length) {
+            console.warn("No arguments provided to sizeAccessor method");
+            return this;
+        }
+        sizeAcc = accessor;
+        return this;
+    }
+
+    vis.childAccessor = function(accessor) {
+        if(!arguments.length) {
+            console.warn("No arguments provided to childAccessor method");
+            return this;
+        }
+        childAcc = accessor;
+        return this;
     }
 
     vis.attr = function(attr, val){
