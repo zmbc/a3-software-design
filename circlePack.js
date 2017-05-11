@@ -61,6 +61,7 @@ function circlePack(){
                     d3.select(this).style("stroke", "");
                 })
                 .on("click", function(d) {
+                        // zoom to the parent if the user clicks on a leaf node
                         if(focus != d) {
                             if(!d.children) {
                                 zoom(d.parent);
@@ -71,11 +72,9 @@ function circlePack(){
                         }
                     })
                 .style("fill", function(d){ return d.children ? _colorScale(d.depth) : attrs.leafColor; })
-                //.attr("cx", function(d){ return d.x; })
-                //.attr("cy", function(d){ return d.y; })
                 .attr("r", 0)
                 .append("title")
-                .text(function(d) { return d.data[nameAcc] + (d.data[sizeAcc] ? ": " + d.data[sizeAcc] : ""); })
+                .text(function(d) { return d.data[nameAcc] + ": " + d.value; })
                 .transition()
                 .duration(attrs.animationDuration)
                 .attr("r", function(d){ return d.r; })
@@ -86,11 +85,8 @@ function circlePack(){
                 .attr("class", "circle-pack-text")
                 .style("text-anchor", "middle")
                 .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
-                .style("text-shadow", "0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff")
                 .style("display", function(d) { return d.parent === root ? "inline" : "none"; })
                 .text(function(d) { return d.data[nameAcc]; })
-                //.attr("x", function(d) { return d.x; })
-                //.attr("y", function(d) { return d.y; })
                 ;
 
             svg.on("click", function() { zoom(root); });
